@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Add Student</title>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+</head>
+<body>
+<h1>Add Student</h1>
+<form action="#" th:action="@{/saveStudent}" th:object="${student}"
+      method="post">
+    <ul>
+        <li th:errors="*{id}"></li>
+        <li th:errors="*{name}"></li>
+        <li th:errors="*{gender}"></li>
+        <li th:errors="*{percentage}"></li>
+    </ul>
+    <table border="1">
+        <tr>
+            <td><label>Id</label></td>
+            <td><input type="number" th:field="*{id}" /></td>
+        </tr>
+        <tr>
+            <td><label>Name</label></td>
+            <td><input type="text" th:field="*{name}" /></td>
+        </tr>
+        <tr>
+            <td><label>Gender</label></td>
+            <td><select th:field="*{gender}">
+                <option th:value="'M'" th:text="Male"></option>
+                <option th:value="'F'" th:text="Female"></option>
+            </select></td>
+        </tr>
+        <tr>
+            <td><label>Percetage</label></td>
+            <td><select id="percentage" name="percentage">
+                <option th:each="i : ${#numbers.sequence(0, 100)}" th:value="${i}" th:text="${i}" th:selected="${i==75}"></option>
+            </select></td>
+        </tr>
+        <tr>
+            <td><input type="submit" value="Submit" /></td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>
